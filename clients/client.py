@@ -1,6 +1,6 @@
 import requests
 
-API_PRINCIPAL_URL = "http://localhost:5000"
+API_PRINCIPAL_URL = "http://localhost:5036"
 
 class SchoolSystemClient:
     @staticmethod

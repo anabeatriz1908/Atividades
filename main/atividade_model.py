@@ -33,7 +33,7 @@ class Atividades(db.Model):
         }
     
 def create_atividade(dados_atividade):
-    url = f"{client.API_PRINCIPAL_URL}/professores/{dados_atividade["professor_id"]}"
+    url = f"{client.API_PRINCIPAL_URL}/professores/{dados_atividade['professor_id']}"
     response = requests.get(url)
 
     if response.status_code != 200:

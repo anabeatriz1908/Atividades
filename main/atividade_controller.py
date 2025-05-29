@@ -4,7 +4,7 @@ from clients.client import SchoolSystemClient
 
 atividade_bp = Blueprint('atividade_bp', __name__)
 
-@atividade_bp.route('/', methods=['GET'])
+@atividade_bp.route('/atividades', methods=['GET'])
 def listar_atividades():
     try:
         atividades = atividade_model.read_atividades()
@@ -12,7 +12,7 @@ def listar_atividades():
     except Exception as e:
         return jsonify({'erro': str(e)}), 500
 
-@atividade_bp.route('/<int:id_atividade>', methods=['GET'])
+@atividade_bp.route('/atividades/<int:id_atividade>', methods=['GET'])
 def listar_atividade_ID(id_atividade):
     try:
         atividade = atividade_model.read_atividade(id_atividade)
@@ -20,17 +20,17 @@ def listar_atividade_ID(id_atividade):
     except atividade_model.AtividadeNotFound:
         return jsonify({'erro': 'Atividade não encontrada'}), 404
 
-@atividade_bp.route('/', methods=['POST'])
+@atividade_bp.route('/atividades', methods=['POST'])
 def criar_atividade():
     dados = request.get_json()
-
     try:
-        resultado_professor = SchoolSystemClient.verificar_professor(dados['id_professor'])
-        if not resultado_professor['success']:
-            return jsonify(resultado_professor['data']), resultado_professor['status_code']
-
         nova_atividade = atividade_model.create_atividade(dados)
-        return jsonify(nova_atividade), 201
+        if isinstance(nova_atividade, dict) and nova_atividade.get("message") == "Turma não existe":
+            return jsonify({'erro': nova_atividade["message"]}), 400
+        return jsonify(nova_atividade), 200
+
+
+    
 
     except Exception as e:
         return jsonify({'erro': str(e)}), 500        
