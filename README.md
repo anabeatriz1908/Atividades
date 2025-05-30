@@ -6,12 +6,15 @@ Este repositório contém a **API de Atividades**, desenvolvida com **Flask** e 
 
 ## 🧩 Arquitetura
 
-A API de Atividades é um **microsserviço** que faz parte de um sistema maior de [School System (https://github.com/anabeatriz1908/API-School-System), sendo responsável exclusivamente pelo gerenciamento das reservas de salas por turma.
+A API de Atividades é um **microsserviço** que faz parte de um sistema maior de [School System], sendo responsável exclusivamente pelo gerenciamento das reservas de salas por turma.
 
 ⚠️ **Esta API depende de outra API de Gerenciamento Escolar (School System)**, que deve estar em execução e exposta localmente. A comunicação entre os serviços ocorre via **requisições HTTP REST**, para validar:
 
-- Se a **Turma** existe (`GET /turmas/<id>`)
+- Se o **Professor** existe (`GET /professores/<id>`)
+- 
+A Api de gerenciamento escolar, esá disponível no repositório abaixo:
 
+`https://github.com/anabeatriz1908/API-School-System.git`
 
 ---
 
