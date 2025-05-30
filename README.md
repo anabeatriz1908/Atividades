@@ -1,29 +1,16 @@
 Repositório para desenvolvimento de Atividades, com Flask.
 
-Grupo 10:
-
-Ana Beatriz Silva Santos - 2401228
-Luiz Otávio RA: 2401300
-Murillo Rodrigues Santos Pereira - 2400338
-Pablo Vavrik RA: 2400125
-Uatila dos Santos Silva - 2400250
-
-
 # 📚 API de Controle de Atividades
 
 Este repositório contém a **API de Atividades**, desenvolvida com **Flask** e **SQLAlchemy**, como parte de uma arquitetura baseada em **microsserviços**.
 
 ## 🧩 Arquitetura
 
-A API de Atividades é um **microsserviço** que faz parte de um sistema maior de [School System](#colocar link do nosso github), sendo responsável exclusivamente pelo gerenciamento das reservas de salas por turma.
+A API de Atividades é um **microsserviço** que faz parte de um sistema maior de [School System (https://github.com/anabeatriz1908/API-School-System), sendo responsável exclusivamente pelo gerenciamento das reservas de salas por turma.
 
 ⚠️ **Esta API depende de outra API de Gerenciamento Escolar (School System)**, que deve estar em execução e exposta localmente. A comunicação entre os serviços ocorre via **requisições HTTP REST**, para validar:
 
 - Se a **Turma** existe (`GET /turmas/<id>`)
-
-A Api de gerenciamento escolar, está disponivél no repositório listado abaixo.
-
-https://github.com/anabeatriz1908/API-School-System.git
 
 
 ---
@@ -35,16 +22,17 @@ https://github.com/anabeatriz1908/API-School-System.git
 - SQLAlchemy
 - SQLite (como banco de dados local)
 - Requests (para consumo da API externa)
+- Docker
 
 ---
 
-## ▶️ Como Executar a API
+## ▶️ Como Executar a API localmente
 
 ### 1. Clone o repositório
 
 ```bash
 git clone https://github.com/anabeatriz1908/Atividades.git
-cd reserva-salas
+cd Atividades
 ```
 
 ### 2. Crie um ambiente virtual (opcional, mas recomendado)
@@ -68,9 +56,33 @@ python app.py
 ```
 
 A aplicação estará disponível em:
-📍 `http://localhost:5002`
+📍 localmente --> `http://localhost:5002`
+
 
 📝 **Observação:** O banco de dados é criado automaticamente na primeira execução.
+
+---
+
+## 🐳 Como Executar a API com Docker
+
+1. **Clone o repositório**
+
+```bash
+git clone https://github.com/anabeatriz1908/Atividades
+cd Atividades
+```
+
+2. Construa a imagem Docker
+
+```bash
+docker build -t atividades .
+```
+
+3. Execute o container
+
+```bash
+docker run -d -p 5036:5036 atividades
+```
 
 ---
 
@@ -78,18 +90,18 @@ A aplicação estará disponível em:
 
 - `GET /atividades` – Lista todas as atividades
 - `POST /atividades` – Cria uma nova atividade
-- `GET /atividades/<id>` – Detalha uma atividade
+- `GET /atividades/<id>` – Detalha uma atividade por id
 
 
 ### Exemplo de corpo JSON para criação:
 
 ```json
 {
-  "turma_id": 1,
-  "sala": "101",
-  "data": "2025-05-06",
-  "hora_inicio": "14:00",
-  "hora_fim": "16:00"
+  "nome_atividade": "String",
+  "descricao": "String",
+  "peso_porcento": 0,
+  "data_entrega": "String",
+  "professor_id": 0
 }
 ```
 
@@ -97,13 +109,15 @@ A aplicação estará disponível em:
 
 ## 🔗 Dependência Externa
 
-Certifique-se de que a **API de Gerenciamento Escolar** esteja rodando em:
+Certifique-se de que a **API de Gerenciamento Escolar** esteja rodando:
 
 ```
-http://localhost:5036
+localmente --> http://localhost:5036
+ou
+use o link --> https://apischoolsystem.onrender.com
 ```
 
-E que os endpoints de `GET /turmas/<id>` (e opcionalmente `GET /alunos/<id>`) estejam funcionando corretamente para que a validação seja feita com sucesso.
+E que os endpoints de `GET /turmas/<id>` estejam funcionando corretamente para que a validação seja feita com sucesso.
 
 ---
 
@@ -112,18 +126,23 @@ E que os endpoints de `GET /turmas/<id>` (e opcionalmente `GET /alunos/<id>`) es
 ```
 atividades/
 ├── clients/
+│ ├── client
 ├── main/
 │ ├── atividade_controller.py
 │ ├── atividade_model.py
 ├── app.py
 ├── config.py
 ├── readme.md
+├── dockerfile
+├── .dockerignore
 └── requirements.txt
 ```
 
 ---
 
 ## 🧑‍💻 Autores
+
+Grupo 10:
 
 Ana Beatriz Silva Santos - RA: 2401228
 
@@ -134,5 +153,6 @@ Murillo Rodrigues Santos Pereira - RA: 2400338
 Pablo Neves Vavrik - RA: 2400125
 
 Uatila dos Santos Silva - RA: 2400250
+
 
 – Projeto educativo de arquitetura com Flask e microsserviços.
