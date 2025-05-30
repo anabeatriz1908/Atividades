@@ -83,8 +83,12 @@ docker build -t atividades .
 3. Execute o container
 
 ```bash
-docker run -d -p 5036:5036 atividades
+docker run -d -p 5002:5002 atividades
 ```
+
+4. A aplicação estará disponível em:
+📍 `http://localhost:5002`
+
 
 ---
 
