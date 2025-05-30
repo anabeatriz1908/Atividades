@@ -1,4 +1,3 @@
-Repositório para desenvolvimento de Atividades, com Flask.
 
 # 📚 API de Controle de Atividades
 
