@@ -10,7 +10,7 @@ A API de Atividades é um **microsserviço** que faz parte de um sistema maior d
 ⚠️ **Esta API depende de outra API de Gerenciamento Escolar (School System)**, que deve estar em execução e exposta localmente. A comunicação entre os serviços ocorre via **requisições HTTP REST**, para validar:
 
 - Se o **Professor** existe (`GET /professores/<id>`)
-- 
+
 A Api de gerenciamento escolar, esá disponível no repositório abaixo:
 
 `https://github.com/anabeatriz1908/API-School-System.git`
@@ -123,7 +123,7 @@ ou
 use o link --> https://apischoolsystem.onrender.com
 ```
 
-E que os endpoints de `GET /turmas/<id>` estejam funcionando corretamente para que a validação seja feita com sucesso.
+E que o endpoint `GET /professores/<id>` estejam funcionando corretamente para que a validação seja feita com sucesso.
 
 ---
 
@@ -132,10 +132,12 @@ E que os endpoints de `GET /turmas/<id>` estejam funcionando corretamente para q
 ```
 atividades/
 ├── clients/
-│ ├── client
+│ ├── client.py
 ├── main/
 │ ├── atividade_controller.py
 │ ├── atividade_model.py
+├── instance
+| ├── atividades.db
 ├── app.py
 ├── config.py
 ├── readme.md
